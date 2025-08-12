@@ -16,3 +16,69 @@ body {
     background: radial-gradient(circle at top left, #0F172A, #1E293B);
     background-size: 200% 200%;
 }
+
+.card-glass {
+    position: relative;
+    border-radius: 1rem; /* ~ rounded-2xl */
+    background: color-mix(in oklab, var(--color-background) 88%, #000 12%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+}
+
+.card-glass::before {
+    content: "";
+    position: absolute; inset: 0;
+    padding: 1px; border-radius: inherit;
+    background: linear-gradient(135deg,
+    rgba(167,243,208,0.25),
+    rgba(74,222,128,0.15),
+    rgba(255,255,255,0.06)
+    );
+    -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.card-glass::after {
+    content: "";
+    position: absolute; inset: -120% -40%;
+    background: linear-gradient(100deg,
+    transparent 40%,
+    rgba(255,255,255,0.08) 50%,
+    transparent 60%);
+    transform: rotate(8deg);
+    transition: transform .8s ease, opacity .8s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+.card-glass:hover::after { transform: translateX(25%) rotate(8deg); opacity: 1; }
+
+.spotlight {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+            radial-gradient(600px circle at var(--mx,50%) var(--my,30%),
+            color-mix(in oklab, var(--color-primary) 8%, transparent) 0%,
+            transparent 60%);
+}
+
+.accent-underline {
+    position: relative; display: inline-block;
+}
+.accent-underline::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: -6px; height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    transform: scaleX(.6); opacity: .7;
+    transform-origin: left;
+    transition: transform .6s ease, opacity .6s ease;
+}
+.accent-underline:hover::after { transform: scaleX(1); opacity: 1; }
+
+.title-shadow {
+    text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
