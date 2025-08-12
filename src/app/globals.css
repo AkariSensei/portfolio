@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+    --color-primary: #4ADE80;
+    --color-primary-dark: #22C55E;
+    --color-secondary: #065F46;
+    --color-accent: #A7F3D0;
+    --color-background: #0F172A;
+    --color-text: #FFFFFF;
+}
+
+body {
+    @apply bg-[color:var(--color-background)] text-[color:var(--color-text)];
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top left, #0F172A, #1E293B);
+    background-size: 200% 200%;
+}
